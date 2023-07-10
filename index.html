@@ -9,6 +9,52 @@
     <script src="js/script.js" defer></script>
 </head>
 <body>
-    
+    <div class="header">
+        <div class="logo"></div>
+        <div class="github"></div>
+    </div>
+    <div class="content">
+        <button class="add" type="button"><img src="imgs/add-svgrepo-com.svg" alt="add"></button>
+    </div>
+    <div class="modal-container">
+        <div class="modal">
+            <div class="close">
+                <img src="imgs/close.svg" alt="close">
+            </div>
+            <form action="#" id="book_form">
+                <h1>Add your book!</h1>
+                <div>
+                    <input type="text" id="book_name">
+                    <label for="book_name">Book name</label>
+                </div>
+                <div>
+                    <input type="text" id="book_author">
+                    <label for="book_author">Book author</label>
+                </div>
+                <div>
+                    <input type="number" id="book_pages">
+                    <label for="book_pages">Book pages</label>
+                </div>
+                <div class="slider_div">
+                    <label for="read"><span class="label-txt">Did you read the book ?</span>
+                        <div class="slider-container">
+                            <input type="checkbox" id="read" value="read">
+                            <span class="slider"></span>
+                        </div>
+                    </label>      
+                </div>
+            </form>
+            <div class="submit_container">
+                <button class="submit" type="button">
+                    Submit
+                    <img src="imgs/tick.svg" alt="submit">
+                </button>
+                <button class="reset" type="reset" form="book_form">
+                    Clear
+                    <img src="imgs/clear.svg" alt="clear">
+                </button>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

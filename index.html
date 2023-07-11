@@ -21,18 +21,18 @@
             <div class="close">
                 <img src="imgs/close.svg" alt="close">
             </div>
-            <form action="#" id="book_form">
+            <form action="#" id="book_form" novalidate>
                 <h1>Add your book!</h1>
                 <div>
-                    <input type="text" id="book_name">
+                    <input type="text" id="book_name" required maxlength="15" minlength="1">
                     <label for="book_name">Book name</label>
                 </div>
                 <div>
-                    <input type="text" id="book_author">
+                    <input type="text" id="book_author" required maxlength="15" minlength="1">
                     <label for="book_author">Book author</label>
                 </div>
                 <div>
-                    <input type="number" id="book_pages">
+                    <input type="number" id="book_pages" required  min="0">
                     <label for="book_pages">Book pages</label>
                 </div>
                 <div class="slider_div">
@@ -45,7 +45,7 @@
                 </div>
             </form>
             <div class="submit_container">
-                <button class="submit" type="button">
+                <button class="submit" type="submit" form="book_form">
                     Submit
                     <img src="imgs/tick.svg" alt="submit">
                 </button>

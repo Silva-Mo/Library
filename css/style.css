@@ -58,11 +58,15 @@ body{
 
 .add:hover {
     background-color: #a700bd69;
-    transform: rotate(180deg)
+    transform: scale(1.07);
+}
+
+.add.clicked{
+    transform: rotate(180deg);
 }
 
 .add:active{
-    transform: scale(0.9) ;
+    transform: scale(0.9);
 }
 
 .modal-container {

@@ -24,7 +24,6 @@ body{
     background: var(--color1-blue);
     background: -webkit-linear-gradient(to right, var(--color2-purple), var(--color1-blue));
     background: linear-gradient(to right, var(--color2-purple), var(--color1-blue)); 
-
 }
 
 .header{
@@ -32,14 +31,12 @@ body{
     background-color: rgba(0, 0, 0, 0.548);
 }
 
-.content {
+.main {
     flex-grow: 1;
+    display: flex;
 }
 
 .add {
-    position: fixed;
-    bottom: 60px;
-    right: 60px;
     height: 60px;
     width: 60px;
     border-radius: 50%;
@@ -49,6 +46,7 @@ body{
     justify-content: center;
     align-items: center;
     transition: 0.25s;
+    margin-bottom: 20%;
 }
 
 .add img {
@@ -289,6 +287,127 @@ div.submit_container button:hover {
 
 div.submit_container button:active {
     transform: scale(0.97);
+}
+
+div[data-index]{
+    height: 300px;
+    background: #ad5389;
+    background: -webkit-linear-gradient(to top, #5f1985c5, #a12971d8);
+    background: linear-gradient(to top, #5f198593, #a12971af); 
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    font-size: 1.3rem;
+    text-shadow: 0 0 10px rgb(64, 5, 78);
+    box-shadow: 7px 7px 4px rgba(90, 90, 90, 0.699);
+}
+
+.sidebar {
+    position: relative;
+    width: 18%;
+    background-color: #00000013;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.content {
+    flex-grow: 1;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 250px);
+    gap: 20px;
+    padding: 15px;
+    justify-content: center;
+}
+
+h3 {
+    padding-bottom: 10px;
+    width: 80%;
+    border-bottom: 2px solid #3e1057;
+    display: flex;
+    justify-content: center;
+}
+
+.info-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    flex-grow: 1;
+}
+
+.info-container h4 {
+    margin: 4px;
+}
+
+.options-div {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+    align-items: center;
+    min-height: 30%;
+}
+
+.delete {
+    padding-left: 4px;
+    background-color: rgba(255, 0, 0, 0.664);
+    border: 2px solid black;
+    color: rgb(0, 0, 0);
+    border-radius: 7px;
+}
+
+.edit, .delete {
+    position: relative;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    height: 40px;
+    width: 110px;
+    transition: 0.5s;
+}
+
+.edit {
+    padding-left: 6%;
+    background-color: rgb(223, 223, 223);
+    border: 2px solid black;
+    color: rgb(0, 0, 0);
+    border-radius: 7px;
+}
+
+.edit::after {
+    position: absolute;
+    height: 25px;
+    width: 25px;
+    left: 67px;
+    content: "";
+    background-color: transparent;
+    background-image: url(../imgs/edit.svg);
+    background-size: cover;
+    margin-bottom: 3px;
+}
+
+.delete::after {
+    position: absolute;
+    height: 25px;
+    width: 25px;
+    left: 72px;
+    content: "";
+    background-color: transparent;
+    background-image: url(../imgs/delete.svg);
+    background-size: cover;
+}
+
+.delete:hover, .edit:hover {
+    transform: scale(1.06);
+}   
+
+h4{
+    text-align: center;
 }
 
 

@@ -5,6 +5,8 @@ const submitBtn = document.querySelector('.submit');
 const resetBtn = document.querySelector('.reset');
 const closeBtn = document.querySelector('img[alt="close"]');
 const form = document.querySelector('form');
+const content = document.querySelector('.content');
+
 
 let myLibrary =[];
 
@@ -71,7 +73,7 @@ submitBtn.addEventListener('click', (e) => {
     if (form.checkValidity()){
         let book = new Book(inputs[0].value, inputs[1].value, inputs[2].value, inputs[3].checked);
         addToLibrary(book);
-        console.log(myLibrary)
+        showLibrary();
         resetBtn.click();
         closeModal();    
     }
@@ -85,7 +87,17 @@ function addToLibrary(book) {
 }
 
 function showLibrary(){
+    const books = document.querySelectorAll('div[data-index]');
+    books.forEach((book) => {
+        content.removeChild(book);
+    })
 
+    for(let i = 0; i < myLibrary.length; i++){
+        let book = document.createElement('div');
+        book.setAttribute('data-index', `${i}`);
+        addBookData(myLibrary[i], book);
+        content.appendChild(book);
+    }
 }
 
 function showError(){
@@ -94,5 +106,33 @@ function showError(){
             input.reportValidity();
         }
     })
+}
 
+function addBookData(bookObj, bookElement){
+    const h3 = document.createElement('h3');
+    const divOfInfo = document.createElement('div');
+    const h4Author = document.createElement('h4');
+    const h4Pages = document.createElement('h4');
+    const options = document.createElement('div');
+    const deleteBtn = document.createElement('button');
+    const editBtn = document.createElement('button');
+
+    divOfInfo.classList.add('info-container');
+    options.classList.add('options-div');
+    deleteBtn.classList.add('delete');
+    editBtn.classList.add('edit');
+
+    h3.textContent = `${bookObj.name}`;
+    h4Author.textContent = `Author: ${bookObj.author}`;
+    h4Pages.textContent = `${bookObj.pages} Pages`;
+    editBtn.textContent = "Edit";
+    deleteBtn.textContent = "Delete";
+
+    bookElement.appendChild(h3);
+    bookElement.appendChild(divOfInfo);
+    divOfInfo.appendChild(h4Author);
+    divOfInfo.appendChild(h4Pages);
+    bookElement.appendChild(options);
+    options.appendChild(editBtn);
+    options.appendChild(deleteBtn);
 }

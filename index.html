@@ -22,6 +22,7 @@
         </div>
         
     </div>
+
     <div class="modal-container">
         <div class="modal">
             <div class="close">
@@ -30,11 +31,11 @@
             <form action="#" id="book_form" novalidate>
                 <h1>Add your book!</h1>
                 <div>
-                    <input type="text" id="book_name" required maxlength="14" minlength="1">
+                    <input type="text" id="book_name" required maxlength="30" minlength="1">
                     <label for="book_name">Book name</label>
                 </div>
                 <div>
-                    <input type="text" id="book_author" required maxlength="14" minlength="1">
+                    <input type="text" id="book_author" required maxlength="25" minlength="1">
                     <label for="book_author">Book author</label>
                 </div>
                 <div>
@@ -56,6 +57,47 @@
                     <img src="imgs/tick.svg" alt="submit">
                 </button>
                 <button class="reset" type="reset" form="book_form">
+                    Clear
+                    <img src="imgs/clear.svg" alt="clear">
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="edit-container" >
+        <div class="modal-edit">
+            <div class="close">
+                <img src="imgs/close.svg" alt="close_edit">
+            </div>
+            <form action="#" id="book_form_edit" novalidate>
+                <h1>Edit your book</h1>
+                <div>
+                    <input type="text" id="book_name_edit" required maxlength="30" minlength="1">
+                    <label for="book_name_edit">Book name</label>
+                </div>
+                <div>
+                    <input type="text" id="book_author_edit" required maxlength="25" minlength="1">
+                    <label for="book_author_edit">Book author</label>
+                </div>
+                <div>
+                    <input type="number" id="book_pages_edit" required  min="0" max="1000000000">
+                    <label for="book_pages_edit">Book pages</label>
+                </div>
+                <div class="slider_div">
+                    <label for="read_edit"><span class="label-txt">Did you read the book ?</span>
+                        <div class="slider-container">
+                            <input type="checkbox" id="read_edit" value="read">
+                            <span class="slider"></span>
+                        </div>
+                    </label>      
+                </div>
+            </form>
+            <div class="submit_container">
+                <button class="edit_btn" type="submit" form="book_form_edit">
+                    Submit
+                    <img src="imgs/tick.svg" alt="submit">
+                </button>
+                <button class="reset" type="reset" form="book_form_edit">
                     Clear
                     <img src="imgs/clear.svg" alt="clear">
                 </button>

@@ -2,11 +2,16 @@ const addBtn = document.querySelector('.add');
 const modalContainer = document.querySelector('.modal-container');
 const inputs = document.querySelectorAll('input');
 const submitBtn = document.querySelector('.submit');
-const resetBtn = document.querySelector('.reset');
+const resetBtns = document.querySelectorAll('.reset');
 const closeBtn = document.querySelector('img[alt="close"]');
-const form = document.querySelector('form');
+const formAdd = document.querySelector('form#book_form');
 const content = document.querySelector('.content');
-
+const deleteBtn = document.querySelector('.delete');
+const editContainer = document.querySelector('.edit-container');
+const closeBtnEdit = document.querySelector('img[alt="close_edit"]');
+const submitEditionBtn = document.querySelector('.edit_btn');
+const modalEdit = document.querySelector('.modal-edit');
+const formEdit = document.querySelector('form#book_form_edit'); 
 
 let myLibrary =[];
 
@@ -15,6 +20,13 @@ function Book(name, author, pages, read){
     this.author = author,
     this.pages = pages,
     this.read = read
+}
+
+Book.prototype.editBook = function(){
+    this.name = inputs[4].value;
+    this.author = inputs[5].value;
+    this.pages = inputs[6].value;
+    this.read = inputs[7].checked;
 }
 
 addBtn.addEventListener('click', (e) => {
@@ -26,8 +38,16 @@ function showModal(){
     modalContainer.style.display = "flex";
 }
 
+function showModalEdit(){
+    editContainer.style.display = "flex";
+}
+
 function closeModal(){
     modalContainer.style.display = "none";
+}
+
+function closeEditModal(){
+    editContainer.style.display = "none";
 }
 
 let invalidChars = [
@@ -57,24 +77,29 @@ inputs.forEach((input) => {
     })    
 })
 
-resetBtn.addEventListener('click', (e) => {
+resetBtns.forEach((btn) => {
+    btn.addEventListener('click', (e) => {
     inputs.forEach((input) =>{
         input.classList.remove('focused');
-    })
+        })
+    })  
 })
 
 closeBtn.addEventListener('click', (e) => {
     closeModal();
 })
 
+closeBtnEdit.addEventListener('click', (e) => {
+    closeEditModal();
+})
 
 submitBtn.addEventListener('click', (e) => {
     e.preventDefault();
-    if (form.checkValidity()){
+    if (formAdd.checkValidity()){
         let book = new Book(inputs[0].value, inputs[1].value, inputs[2].value, inputs[3].checked);
         addToLibrary(book);
         showLibrary();
-        resetBtn.click();
+        resetBtns[0].click();
         closeModal();    
     }
     else{
@@ -96,6 +121,12 @@ function showLibrary(){
         let book = document.createElement('div');
         book.setAttribute('data-index', `${i}`);
         addBookData(myLibrary[i], book);
+        if (myLibrary[i].read === true){
+            book.classList.add('read');
+        }
+        else{
+            book.classList.remove('read');
+        }
         content.appendChild(book);
     }
 }
@@ -128,6 +159,14 @@ function addBookData(bookObj, bookElement){
     editBtn.textContent = "Edit";
     deleteBtn.textContent = "Delete";
 
+    editBtn.addEventListener('click', (e) => {
+        showModalEdit();
+        let indexNum = e.target.parentElement.parentElement.getAttribute('data-index');
+        fillInputsWithData(indexNum);
+        focusInputs();
+        toggleIndexToModal(indexNum);
+    })
+
     bookElement.appendChild(h3);
     bookElement.appendChild(divOfInfo);
     divOfInfo.appendChild(h4Author);
@@ -135,4 +174,41 @@ function addBookData(bookObj, bookElement){
     bookElement.appendChild(options);
     options.appendChild(editBtn);
     options.appendChild(deleteBtn);
+}
+
+function fillInputsWithData(indexNum) {
+    inputs[4].value = myLibrary[indexNum].name;
+    inputs[5].value = myLibrary[indexNum].author;
+    inputs[6].value =  myLibrary[indexNum].pages;
+    if (myLibrary[indexNum].read === true){
+        inputs[7].checked = true;
+    }
+    else{
+        inputs[7].checked = false;
+    }
+}
+
+function focusInputs(){
+    for (let i = 4; i < inputs.length; i++){
+        inputs[i].classList.add('focused');
+    }
+}
+
+submitEditionBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    if (formEdit.checkValidity()){
+        let book = myLibrary[e.target.parentElement.parentElement.getAttribute('data-num')];
+        console.log(e.target);
+        book.editBook();
+        showLibrary();
+        closeEditModal();
+    }
+    else{
+        showError();
+    }
+})
+
+
+function toggleIndexToModal(indexNum){
+    modalEdit.setAttribute('data-num', `${indexNum}`);
 }

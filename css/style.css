@@ -661,7 +661,6 @@ img[alt="submit"]{
 
 @media only screen and (max-width: 1230px){
     .modal {
-        min-height: 63%;
         width: 46%;
     }
     .modal-edit{
@@ -706,5 +705,15 @@ img[alt="submit"]{
     .header{
         padding-left: 8px;
         padding-right: 8px;
+    }
+}
+
+@media only screen and (max-height: 392px){
+    .modal,.modal-edit{
+        min-height: 90%;
+        font-size: 0.8rem;
+    }
+    .modal button, .modal-edit button{
+        font-size: 0.8rem;
     }
 }

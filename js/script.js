@@ -12,6 +12,13 @@ const closeBtnEdit = document.querySelector('img[alt="close_edit"]');
 const submitEditionBtn = document.querySelector('.edit_btn');
 const modalEdit = document.querySelector('.modal-edit');
 const formEdit = document.querySelector('form#book_form_edit'); 
+const confirmationModalContainer = document.querySelector('.confirmation-container');
+const confirmationModal = document.querySelector('.confirm-modal');
+const yesBtn = document.querySelector('.yes-delete');
+const noBtn = document.querySelector('.no-delete');
+const totalP = document.querySelector('.total');
+const readP = document.querySelector('.read-total');
+const noReadP = document.querySelector('.non-read-total');
 
 let myLibrary =[];
 
@@ -30,7 +37,6 @@ Book.prototype.editBook = function(){
 }
 
 addBtn.addEventListener('click', (e) => {
-    addBtn.classList.toggle('clicked')
     showModal();
 });
 
@@ -42,12 +48,20 @@ function showModalEdit(){
     editContainer.style.display = "flex";
 }
 
+function showConfirmationModal(){
+    confirmationModalContainer.style.display = "flex";
+}
+
 function closeModal(){
     modalContainer.style.display = "none";
 }
 
 function closeEditModal(){
     editContainer.style.display = "none";
+}
+
+function closeConfirmationModal() {
+    confirmationModalContainer.style.display = "none";
 }
 
 let invalidChars = [
@@ -99,6 +113,7 @@ submitBtn.addEventListener('click', (e) => {
         let book = new Book(inputs[0].value, inputs[1].value, inputs[2].value, inputs[3].checked);
         addToLibrary(book);
         showLibrary();
+        updateLog();
         resetBtns[0].click();
         closeModal();    
     }
@@ -167,6 +182,12 @@ function addBookData(bookObj, bookElement){
         toggleIndexToModal(indexNum);
     })
 
+    deleteBtn.addEventListener('click', (e) => {
+        showConfirmationModal();
+        let indexNum = e.target.parentElement.parentElement.getAttribute('data-index');
+        toggleIndexToConfirmationModal(indexNum);
+    })
+
     bookElement.appendChild(h3);
     bookElement.appendChild(divOfInfo);
     divOfInfo.appendChild(h4Author);
@@ -201,6 +222,7 @@ submitEditionBtn.addEventListener('click', (e) => {
         console.log(e.target);
         book.editBook();
         showLibrary();
+        updateLog();
         closeEditModal();
     }
     else{
@@ -212,3 +234,41 @@ submitEditionBtn.addEventListener('click', (e) => {
 function toggleIndexToModal(indexNum){
     modalEdit.setAttribute('data-num', `${indexNum}`);
 }
+
+function toggleIndexToConfirmationModal(indexNum){
+    confirmationModal.setAttribute('data-num', `${indexNum}`);
+}
+
+function deleteBook(indexNum){
+    myLibrary.splice(indexNum, 1);
+}
+
+yesBtn.addEventListener('click', (e) =>{
+    let indexNum = e.target.parentElement.parentElement.getAttribute('data-num');
+    deleteBook(indexNum)
+    closeConfirmationModal();
+    showLibrary();
+    updateLog();
+})
+
+noBtn.addEventListener('click', (e) => {
+    closeConfirmationModal();
+})
+
+function updateLog(){
+    totalP.textContent = `total book counts: ${myLibrary.length}`;
+
+    let readBooks = myLibrary.filter((book) => {
+        if (book.read === true){
+            return true;
+        }
+    });
+    let nonReadBooks = myLibrary.filter((book) => {
+        if (book.read === false){
+            return true;
+        }
+    });
+
+    readP.textContent = `Read: ${readBooks.length}`;
+    noReadP.textContent = `Not Read: ${nonReadBooks.length}`;
+}    

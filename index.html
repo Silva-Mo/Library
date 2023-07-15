@@ -10,17 +10,32 @@
 </head>
 <body>
     <div class="header">
-        <div class="logo"></div>
-        <div class="github"></div>
+        <div class="logo">
+            <img src="imgs/library.svg" alt="library logo">
+            <h1>Library</h1>
+        </div>
+        <div class="github">
+            <img src="imgs/github-mark-white.svg" alt="github">
+            <div><a href="https://github.com/Silva-Mo/Library">Silva-Mo</a></div>
+        </div>
     </div>
     <div class="main">
         <div class="content">
 
         </div>
         <div class="sidebar">
-            <button class="add" type="button"><img src="imgs/add.svg" alt="add"></button>    
+            <button class="add" type="button"><h1>ADD</h1><img src="imgs/add.svg" alt="add"></button> 
+            <div class="clarification-container">
+                <div class="read-color"><p>Read</p> <div></div> </div>
+                <div class="non-read-color"><p>Not Read</p> <div></div> </div>
+            </div>   
+            <div class='log'>
+                    <h2>Library Log</h2>
+                    <p class="total">total book counts: 0</p>
+                    <p class="read-total">Read: 0</p>
+                    <p class="non-read-total">Not Read: 0</p>
+            </div>
         </div>
-        
     </div>
 
     <div class="modal-container">
@@ -100,6 +115,20 @@
                 <button class="reset" type="reset" form="book_form_edit">
                     Clear
                     <img src="imgs/clear.svg" alt="clear">
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="confirmation-container">
+        <div class="confirm-modal">
+            <h1>Do you really want to delete the book ?</h1>
+            <div class="confirm-options">
+                <button class="yes-delete">
+                    Yes
+                </button>
+                <button class="no-delete">
+                    No
                 </button>
             </div>
         </div>

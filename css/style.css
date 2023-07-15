@@ -3,6 +3,11 @@
     src: url(../fonts/B612-Regular.ttf);
 }
 
+@font-face {
+    font-family: 'Quicksand';
+    src: url(../fonts/Quicksand-VariableFont_wght.ttf);
+}
+
 :root {
     --color1-blue: #7F00FF;
     --color2-purple: #E100FF;
@@ -29,6 +34,10 @@ body{
 .header{
     min-height: 120px;
     background-color: rgba(0, 0, 0, 0.548);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 40px;
 }
 
 .main {
@@ -37,16 +46,24 @@ body{
 }
 
 .add {
+    color: white;
     height: 60px;
-    width: 60px;
-    border-radius: 50%;
+    width: 90%;
     border: 2px solid rgb(255, 255, 255);
     background-color: #22003d69;
     display: flex;
     justify-content: center;
+    gap: 20px;
     align-items: center;
     transition: 0.25s;
-    margin-bottom: 20%;
+    margin-top: 10%;
+    border-radius: 10px;
+}
+
+.add h1{
+    margin-top: 3px;
+    margin-bottom: 0;
+    font-weight: 400px;
 }
 
 .add img {
@@ -56,24 +73,20 @@ body{
 
 .add:hover {
     background-color: #a700bd69;
-    transform: scale(1.07);
-}
-
-.add.clicked{
-    transform: rotate(180deg);
+    transform: scale(1.03);
 }
 
 .add:active{
     transform: scale(0.9);
 }
 
-.modal-container {
+.modal-container, .edit-container, .confirmation-container {
     position: fixed;
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(255, 255, 255, 0.137);
+    background-color: rgba(255, 255, 255, 0.432);
     display: none;
     justify-content: center;
     align-items: center;
@@ -81,9 +94,10 @@ body{
 }
 
 .modal {
+    min-height: 380px;
     left: 50%;
     top: 50%;
-    min-height: 63%;
+    height: 63%;
     width: 27%;
     background: #ad5389;
     background: -webkit-linear-gradient(to bottom, var(--color4-darkPurple), var(--color3-purple));
@@ -295,9 +309,9 @@ div.submit_container button:active {
 
 div[data-index]{
     height: 300px; 
-    background: #bdc3c7;
-    background: -webkit-linear-gradient(to bottom, #2c3e50, #9da1a3);
-    background: linear-gradient(to bottom, #64696dd5, #1d1d1dbd);
+    background: #64696dd2;
+    background: -webkit-linear-gradient(to bottom, #64696dd2, #1d1d1dcb);
+    background: linear-gradient(to bottom, #64696dd2, #1d1d1dcb);
     border-radius: 10px;
     display: flex;
     flex-direction: column;
@@ -323,12 +337,14 @@ div[data-index].read{
 
 
 .sidebar {
-    position: relative;
+    font-family: 'Quicksand';
     width: 18%;
+    min-width: 200px;
     background-color: #00000013;
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
+    justify-content: flex-start;
+    gap: 20px;
     align-items: center;
 }
 
@@ -336,15 +352,15 @@ div[data-index].read{
     flex-grow: 1;
     display: grid;
     grid-template-columns: repeat(auto-fit, 250px);
-    gap: 20px;
-    padding: 15px;
+    gap: 40px;
+    padding: 30px 10px;
     justify-content: center;
 }
 
 h3 {
     padding-bottom: 10px;
     width: 80%;
-    border-bottom: 2px solid #3e1057;
+    border-bottom: 3px solid rgba(0, 0, 0, 0.397);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -393,7 +409,7 @@ h3 {
 
 .edit {
     padding-left: 6%;
-    background-color: rgb(223, 223, 223);
+    background-color: rgb(214, 214, 214);
     border: 2px solid black;
     color: rgb(0, 0, 0);
     border-radius: 7px;
@@ -431,24 +447,11 @@ h4{
     word-break: break-word;
 }
 
-
-.edit-container {
-    position: fixed;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(255, 255, 255, 0.137);
-    display: none;
-    justify-content: center;
-    align-items: center;
-    z-index: 1;
-}
-
 .modal-edit {
     left: 50%;
     top: 50%;
-    min-height: 67%;
+    min-height: 380px;
+    height: 67%;
     width: 20%;
     background: #bdc3c7;
     background: -webkit-linear-gradient(to bottom, #2c3e50, #9da1a3);
@@ -485,4 +488,223 @@ h4{
 
 img[alt="submit"]{
     pointer-events: none;
+}
+
+.confirm-modal {
+    left: 50%;
+    top: 50%;
+    min-height: 30%;
+    width: 40%;
+    background: rgb(118, 10, 168);
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    font-size: 0.9;
+    text-align: center;
+    padding: 10px;
+    color: white;
+    border: 2px solid white;
+}
+
+.confirm-modal {
+    animation: popup 0.27s;
+}
+
+.yes-delete, .no-delete{
+    width: 100px;
+    height: 40px;
+    border-radius: 6px;
+    font-size: 1.4rem;
+    transition: 0.2s;
+    border: 1px solid black;
+}
+
+.yes-delete{
+    background-color: rgb(196, 0, 0);
+    color: white;
+}
+
+.no-delete{
+    background-color: rgb(0, 112, 15);
+    color: rgb(255, 255, 255);
+}
+
+.yes-delete:hover, .no-delete:hover{
+    transform: scale(1.03);
+}
+
+.confirm-options{
+    display: flex;
+    justify-content: center;
+    width: 55%;
+    gap: 30px;
+}
+
+.clarification-container{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    color: white;
+    font-weight: 600;
+}
+
+.read-color, .non-read-color{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 5px;
+
+}
+
+.read-color div, .non-read-color div{
+    min-width: 30px;
+    height: 30px;
+    border-radius: 7px;
+}
+
+.read-color div{
+    background-color:#ad5389;
+    background: -webkit-linear-gradient(to top, #5f1985c5, #a12971d8);
+    background: linear-gradient(to top, #5f198593, #a12971af);;
+}
+
+.non-read-color div {
+    background: #bdc3c7;
+    background: -webkit-linear-gradient(to bottom, #2c3e50, #9da1a3);
+    background: linear-gradient(to bottom, #64696de1, #1d1d1dd7);
+}
+
+.log{
+    border: 2px solid white;
+    width: 90%;
+    height: 175px;
+    color: white;
+    text-align: center;
+    border-radius: 4px;
+}
+
+.log h2{
+    margin: 0;
+    margin-top: 5px;
+    width: 100%;
+    border-bottom: 2px solid white;
+    padding-bottom: 10px;
+}
+
+.log p {
+    font-weight: 500;
+}
+
+.logo{
+    display: flex;
+    align-items: center;
+    font-family: 'Quicksand';
+    color: white;
+    font-size: 2rem;
+    border-bottom: 5px solid white;
+    padding-bottom: 4px;
+}
+
+.logo img {
+    width: 80px;
+    height: 80px;
+}
+
+.logo h1{
+    margin: 0;
+}
+
+.github {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: white;
+    font-size: 1.4rem;
+    transition: 0.4s;
+}
+
+.github div{
+    transition: 0.4s;
+}
+
+.github img {
+    height: 40px;
+    width: 40px;
+    transition: 0.4s;
+}
+
+.github:hover img{
+    transform: rotate(360deg);
+}
+
+.github:hover div{
+    transform: scale(1.1);
+}
+
+.github:hover{
+    gap: 15px;
+}
+
+.github div a:visited{
+    color: white;
+    text-decoration: none;
+}
+
+.github div a:link{
+    color: white;
+    text-decoration: none;
+}
+
+@media only screen and (max-width: 1230px){
+    .modal {
+        min-height: 63%;
+        width: 46%;
+    }
+    .modal-edit{
+        width: 46%;
+    }
+    
+}
+
+@media only screen and (max-width: 685px){
+    :root{
+        font-size: 12px;
+    }
+    .main{
+        flex-direction: column-reverse;
+    }
+    .sidebar{
+        width: 100%;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-around;
+        padding: 7px 15px;
+        gap: 3px;
+    }
+
+    .add{
+        margin: 0;
+    }
+
+    .log{
+        font-size: 0.8rem;
+        max-height: 140px;
+        min-width: 60px;
+    }
+    .modal, .modal-edit{
+        width: 70%;
+    }
+
+
+    .logo{
+        font-size: 1.4rem;
+    }
+    .header{
+        padding-left: 8px;
+        padding-right: 8px;
+    }
 }

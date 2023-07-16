@@ -604,8 +604,8 @@ img[alt="submit"]{
     align-items: center;
     font-family: 'Quicksand';
     color: white;
-    font-size: 2rem;
-    border-bottom: 5px solid white;
+    font-size: 1.8rem;
+    border-bottom: 4px solid white;
     padding-bottom: 4px;
 }
 
@@ -711,12 +711,21 @@ img[alt="submit"]{
     }
 }
 
-@media only screen and (max-height: 392px){
+@media only screen and (max-height: 400px){
     .modal,.modal-edit{
-        min-height: 360px;
-        font-size: 0.8rem;
+        min-height: 310px;
+        font-size: 0.7rem;
     }
+
+    .submit_container{
+        min-height: 50px;
+    }
+
     .modal button, .modal-edit button{
         font-size: 0.8rem;
+    }
+
+    button.submit, button.reset{
+        height: 30px;
     }
 }

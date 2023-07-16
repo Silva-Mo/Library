@@ -94,7 +94,7 @@ body{
 }
 
 .modal {
-    min-height: 380px;
+    min-height: 400px;
     left: 50%;
     top: 50%;
     height: 63%;
@@ -450,7 +450,7 @@ h4{
 .modal-edit {
     left: 50%;
     top: 50%;
-    min-height: 380px;
+    min-height: 400px;
     height: 67%;
     width: 20%;
     background: #bdc3c7;
@@ -706,11 +706,14 @@ img[alt="submit"]{
         padding-left: 8px;
         padding-right: 8px;
     }
+    .confirm-modal{
+        width: 60%;
+    }
 }
 
 @media only screen and (max-height: 392px){
     .modal,.modal-edit{
-        min-height: 90%;
+        min-height: 360px;
         font-size: 0.8rem;
     }
     .modal button, .modal-edit button{

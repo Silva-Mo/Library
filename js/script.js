@@ -22,19 +22,22 @@ const noReadP = document.querySelector('.non-read-total');
 
 let myLibrary =[];
 
-function Book(name, author, pages, read){
-    this.name = name,
-    this.author = author,
-    this.pages = pages,
-    this.read = read
+class Book{
+    constructor(name, author, pages, read){
+        this.name = name,
+        this.author = author,
+        this.pages = pages,
+        this.read = read   
+    }
+    
+    editBook(){
+        this.name = inputs[4].value;
+        this.author = inputs[5].value;
+        this.pages = inputs[6].value;
+        this.read = inputs[7].checked;
+    }
 }
 
-Book.prototype.editBook = function(){
-    this.name = inputs[4].value;
-    this.author = inputs[5].value;
-    this.pages = inputs[6].value;
-    this.read = inputs[7].checked;
-}
 
 addBtn.addEventListener('click', (e) => {
     showModal();
@@ -219,7 +222,6 @@ submitEditionBtn.addEventListener('click', (e) => {
     e.preventDefault();
     if (formEdit.checkValidity()){
         let book = myLibrary[e.target.parentElement.parentElement.getAttribute('data-num')];
-        console.log(e.target);
         book.editBook();
         showLibrary();
         updateLog();

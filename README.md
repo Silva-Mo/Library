@@ -4,7 +4,7 @@
 [LIVE DEMO](https://silva-mo.github.io/Library/)
 
 ## About
-That is my first TOP JS project. It requires a good understanding of JS (Objects, Prototypes, and Object Constructors) and intermediate HTML/CSS concepts.
+That is my first TOP JS project. It requires a good understanding of JS (Objects, Prototypes, and Object Constructors, Classes) and intermediate HTML/CSS concepts.
 
 Alhamdulillah
 
